@@ -111,7 +111,7 @@
         .search-box { background: var(--card); border: 1px solid var(--border); border-radius: 16px; display: flex; align-items: center; padding: 0 16px; margin: 15px; }
         .search-box input { width: 100%; background: transparent; border: none; color: white; padding: 14px; outline: none; font-size: 13px; }
 
-        /* --- আধুনিক AdsGram Card Style --- */
+        /* --- AdsGram Card Style --- */
         .adsgram-container {
             background: linear-gradient(135deg, rgba(0, 242, 254, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
             border: 1px solid var(--border);
@@ -128,7 +128,7 @@
             background: radial-gradient(circle, var(--primary-glow) 0%, transparent 65%); pointer-events: none;
         }
 
-        /* --- আধুনিক Task Cards --- */
+        /* --- Task Cards --- */
         .task-list {
             display: flex;
             flex-direction: column;
@@ -156,7 +156,6 @@
         }
         .task-title { font-weight: 700; font-size: 13.5px; margin: 0 0 5px 0; color: #fff; }
         
-        /* মডার্ন ক্যাটাগরি ব্যাজ */
         .task-badge {
             font-size: 9px; font-weight: 800; padding: 2px 8px; border-radius: 6px;
             text-transform: uppercase; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 4px;
@@ -179,7 +178,7 @@
             background: var(--grad); color: #000; border: none; box-shadow: 0 2px 10px var(--primary-glow);
         }
 
-        /* --- ওয়ালেট ব্যানার (ডেবিট কার্ড ডিজাইন) --- */
+        /* --- ওয়ালেট ব্যানার --- */
         .wallet-banner { 
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%); 
             backdrop-filter: blur(20px);
@@ -198,6 +197,37 @@
         }
 
         .admin-notice-box { background: rgba(0, 242, 254, 0.04); border: 1px dashed rgba(0, 242, 254, 0.2); margin: 0 15px 15px; padding: 14px; border-radius: 16px; display: flex; align-items: center; gap: 12px; font-size: 12.5px; line-height: 1.4; color: #eee; }
+        
+        /* Payout Proof Card Styles */
+        .payout-proof-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 20px;
+            padding: 18px;
+            margin: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        .payout-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .trx-id {
+            font-family: monospace;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-size: 10px;
+            color: var(--primary);
+            display: inline-block;
+            margin-top: 4px;
+        }
+
         .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 25px 15px; }
         .stat-box { background: var(--card); padding: 18px 10px; border-radius: 18px; text-align: center; border: 1px solid var(--border); cursor: pointer; transition: 0.25s; }
         .stat-box:active { transform: scale(0.96); }
@@ -206,7 +236,7 @@
         #history-popup, #offer-popup, #notification-popup, #task-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(3,3,5,0.95); z-index: 10000; align-items: center; justify-content: center; backdrop-filter: blur(12px); }
         .modal-box { background: #0c0c10; border: 1px solid var(--border); border-radius: 24px; width: 90%; max-width: 360px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
 
-        /* --- Floating Navigation Style --- */
+        /* Floating Navigation */
         nav { 
             position: fixed; 
             bottom: 15px; 
@@ -304,8 +334,11 @@
         <li onclick="toggleSidebar(); navTo('home', document.querySelectorAll('.nav-item')[0])">
             <i class="fa fa-home"></i> Dashboard Home
         </li>
+        <li onclick="openPayoutChannel()">
+            <i class="fa-solid fa-receipt" style="color:#10b981;"></i> পেমেন্ট প্রুফ চ্যানেল (Proof)
+        </li>
         <li onclick="openGuideVideo()">
-            <i class="fa fa-play-circle"></i> ভিডিও গাইড (কিভাবে কাজ করতে হয়)
+            <i class="fa fa-play-circle"></i> ভিডিও গাইড (কিভাবে কাজ করবেন)
         </li>
         <li onclick="openPremiumChannel()">
             <i class="fa fa-crown" style="color:#ffd700;"></i> Premium Channel
@@ -362,7 +395,7 @@
     </div>
 </div>
 
-<!-- টাস্ক টাইমার মডাল (নিরাপদ ওয়েবসাইট ও টেলিগ্রাম ভিজিট) -->
+<!-- টাস্ক টাইমার মডাল -->
 <div id="task-modal">
     <div class="modal-box" style="text-align:center; padding: 25px 20px; border: 1px solid var(--primary);">
         <i class="fa-solid fa-hourglass-half fa-spin fa-3x" style="color:var(--primary); filter: drop-shadow(0 0 10px var(--primary-glow));"></i>
@@ -409,7 +442,7 @@
         <input type="text" id="task-search-input" placeholder="টাস্ক আইডি বা নাম দিয়ে সার্চ করুন..." oninput="filterTasks()">
     </div>
     
-    <!-- AdsGram Section (এড দেখে আয়) -->
+    <!-- AdsGram Section -->
     <div style="padding: 0 18px 5px; font-weight: 800; color: var(--primary); font-size: 13px; letter-spacing: 0.5px;">⚡ ADSGRAM REWARDED ADS</div>
     <div class="adsgram-container">
         <i class="fa-solid fa-circle-play fa-3x" style="color:var(--primary); filter: drop-shadow(0 0 15px var(--primary-glow)); margin-bottom:12px;"></i>
@@ -420,11 +453,10 @@
 
     <div id="banner-ad-place" style="margin: 5px 0; text-align: center; min-height: 55px;"></div>
 
-    <!-- Active Tasks (ভিজিট এবং জয়েন টাস্কসমূহ) -->
+    <!-- Active Tasks -->
     <div style="padding: 15px 18px 8px; font-weight: 800; color: var(--primary); font-size: 13px; letter-spacing: 0.5px;">🌐 ACTIVE MISSIONS (VISIT & EARN)</div>
     <div id="task-list-ui" class="task-list"></div>
     
-    <!-- "আরও দেখুন" বাটন -->
     <button id="load-more-btn" onclick="loadTasks(true)">আরও দেখুন</button>
 </div>
 
@@ -463,13 +495,33 @@
     </div>
 
     <div class="stats-grid">
-        <div class="stat-box" style="border-bottom: 3.5px solid #f59e0b;" onclick="openHistory('Withdrawals', 'Pending')">
-            <span style="color:#f59e0b; font-size:12px; font-weight:bold; display:block; margin-bottom:4px;">⏱️ Pending</span>
+        <div class="stat-box" style="border-bottom: 3.5px solid #f59e0b;" onclick="openHistory('My Withdrawals', 'Pending')">
+            <span style="color:#f59e0b; font-size:12px; font-weight:bold; display:block; margin-bottom:4px;">⏱️ My Pending</span>
             <b id="count-pending" style="font-size:18px;">0</b>
         </div>
-        <div class="stat-box" style="border-bottom: 3.5px solid #10b981;" onclick="openHistory('Withdrawals', 'Complete')">
-            <span style="color:#10b981; font-size:12px; font-weight:bold; display:block; margin-bottom:4px;">✅ Complete</span>
+        <div class="stat-box" style="border-bottom: 3.5px solid #10b981;" onclick="openHistory('My Withdrawals', 'Complete')">
+            <span style="color:#10b981; font-size:12px; font-weight:bold; display:block; margin-bottom:4px;">✅ My Complete</span>
             <b id="count-success" style="font-size:18px;">0</b>
+        </div>
+    </div>
+
+    <!-- ===== লাইভ পেমেন্ট প্রুফ ও ভেরিফাইড পে-আউট কনফার্মেশন সেকশন (Review Policy Compliant) ===== -->
+    <div class="payout-proof-box">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div>
+                <h4 style="margin:0; font-size:14px; color:#10b981; font-weight:800; display:flex; align-items:center; gap:6px;">
+                    <i class="fa-solid fa-shield-check"></i> ভেরিফাইড পেমেন্ট হিস্ট্রি
+                </h4>
+                <small style="opacity:0.6; font-size:10px;">সরাসরি সিস্টেমে সম্পন্ন হওয়া সাম্প্রতিক পেমেন্টসমূহ</small>
+            </div>
+            <button onclick="openPayoutChannel()" style="background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color:#10b981; font-size: 10px; font-weight: 800; padding: 6px 12px; border-radius: 20px; cursor: pointer;">
+                <i class="fab fa-telegram-plane"></i> প্রুফ চ্যানেল
+            </button>
+        </div>
+        
+        <!-- লাইভ সফল পে-আউট তালিকা -->
+        <div id="public-payouts-container" style="max-height: 260px; overflow-y: auto; scrollbar-width: none;">
+            <p style="text-align:center; font-size:11px; opacity:0.5; padding: 15px 0;">যাচাইকৃত পেমেন্ট লোড হচ্ছে...</p>
         </div>
     </div>
 </div>
@@ -499,11 +551,17 @@
 </div>
 
 <div id="support" class="page">
-    <div style="padding:70px 20px; text-align:center;">
+    <div style="padding:50px 20px; text-align:center;">
         <i class="fa fa-headset fa-4x" style="color:var(--primary); filter: drop-shadow(0 0 15px var(--primary-glow));"></i>
-        <h2 style="margin-top:25px; font-size:22px; font-weight:800;">সহযোগিতা প্রয়োজন?</h2>
-        <p style="color:#a0aec0; margin-bottom:30px; font-size:14px; line-height:1.5;">পেমেন্ট বা অ্যাপ সংক্রান্ত যেকোনো সমস্যায় সরাসরি অ্যাডমিনকে মেসেজ দিন।</p>
-        <button class="btn-premium" id="tg-admin-btn"><i class="fab fa-telegram-plane"></i> Telegram Admin</button>
+        <h2 style="margin-top:20px; font-size:20px; font-weight:800;">সহযোগিতা প্রয়োজন?</h2>
+        <p style="color:#a0aec0; margin-bottom:25px; font-size:13.5px; line-height:1.5;">পেমেন্ট বা অ্যাপ সংক্রান্ত যেকোনো সমস্যায় সরাসরি অ্যাডমিনকে মেসেজ দিন।</p>
+        
+        <div style="display:flex; flex-direction:column; gap:12px;">
+            <button class="btn-premium" id="tg-admin-btn"><i class="fab fa-telegram-plane"></i> Telegram Admin</button>
+            <button class="btn-premium" style="background: rgba(16, 185, 129, 0.15); border: 1.5px solid #10b981; color: #10b981; box-shadow: none;" onclick="openPayoutChannel()">
+                <i class="fa-solid fa-receipt"></i> পাবলিক পেমেন্ট প্রুফ চ্যানেল
+            </button>
+        </div>
     </div>
 </div>
 
@@ -558,6 +616,7 @@
         loadSettings();
         checkPopup();
         loadNotifications();
+        loadPublicPayoutProofs();
     }
 
     function changeTheme(theme) {
@@ -644,7 +703,7 @@
         });
     }
 
-    /* --- Visit & Earn (Missions) Loading --- */
+    /* --- Tasks Loading --- */
     function loadTasks(isLoadMore = false) {
         let query = db.collection("tasks").orderBy("timestamp", "desc").limit(limitPerBatch);
         if (isLoadMore && lastVisibleDoc) query = query.startAfter(lastVisibleDoc);
@@ -658,7 +717,6 @@
                 const task = doc.data(); const id = doc.id;
                 const isCompleted = (userData.watched || []).includes(`${id}_${today}`);
                 
-                // আধুনিক ডাইনামিক ক্যাটাগরি ব্যাজ
                 let badgeHtml = "";
                 let iconClass = "fa-solid fa-globe";
                 
@@ -700,7 +758,7 @@
         });
     }
 
-    /* --- Visit Task Safe Timer Popup Logic --- */
+    /* --- Visit Task Safe Timer --- */
     function startTask(id, url, duration, reward, title) {
         const today = new Date().toISOString().split('T')[0];
         const isCompleted = (userData.watched || []).includes(`${id}_${today}`);
@@ -732,7 +790,6 @@
         const claimBtn = document.getElementById('task-claim-btn');
         
         actionBtn.style.display = "none";
-        
         if (activeTaskInterval) clearInterval(activeTaskInterval);
         
         activeTaskInterval = setInterval(() => {
@@ -786,7 +843,7 @@
         document.getElementById('task-modal').style.display = "none";
     }
 
-    /* --- সেটিংস ও নোটিফিকেশন কনফিগ --- */
+    /* --- Settings & Config --- */
     function loadSettings() {
         db.collection("settings").doc("config").onSnapshot(doc => {
             if (doc.exists) {
@@ -890,6 +947,12 @@
         document.getElementById('notification-popup').style.display = 'none';
     }
 
+    /* --- পাবলিক পেমেন্ট প্রুফ চ্যানেল ওপেনিং ফাংশন --- */
+    function openPayoutChannel() {
+        const channelUrl = appSettings.payoutChannelUrl || appSettings.premiumChannelUrl || "https://t.me/Ret2_bot";
+        tg.openTelegramLink(channelUrl);
+    }
+
     function openPremiumChannel() {
         if(appSettings.premiumChannelUrl) tg.openTelegramLink(appSettings.premiumChannelUrl);
         else tg.showAlert("প্রিমিয়াম চ্যানেল Coming Soon");
@@ -925,12 +988,13 @@
         else if(m === 'USDT') { numInput.placeholder = "USDT Address (BEP20) দিন"; hint.innerHTML = "* আপনার <b>USDT (BEP20)</b> ওয়ালেট এড্রেস দিন।"; }
     }
 
+    /* --- ব্যবহারকারীর ব্যক্তিগত উইথড্র হিস্ট্রি --- */
     function loadWithdrawalHistory(uid) {
         db.collection("withdrawals").where("userId", "==", String(uid)).onSnapshot(snap => {
             pendingWithdrawals = []; completeWithdrawals = [];
             snap.forEach(doc => {
                 const d = doc.data();
-                if (['complete', 'paid', 'success'].includes(d.status.toLowerCase())) completeWithdrawals.push(d);
+                if (['complete', 'paid', 'success'].includes(String(d.status).toLowerCase())) completeWithdrawals.push(d);
                 else pendingWithdrawals.push(d);
             });
             document.getElementById('count-pending').innerText = pendingWithdrawals.length;
@@ -938,13 +1002,94 @@
         });
     }
 
+    /* --- গ্লোবাল ভেরিফাইড পে-আউট কনফার্মেশন ফিড (Review Requirement) --- */
+    function loadPublicPayoutProofs() {
+        const container = document.getElementById('public-payouts-container');
+        
+        db.collection("withdrawals")
+          .where("status", "in", ["Complete", "Paid", "success", "complete", "paid"])
+          .limit(20)
+          .onSnapshot(snap => {
+            if (snap.empty) {
+                container.innerHTML = `
+                    <div style="text-align:center; padding: 20px; opacity: 0.6; font-size:11.5px;">
+                        <i class="fa fa-info-circle"></i> এখনো কোনো পাবলিক লেনদেন সম্পন্ন হয়নি। প্রথম পেমেন্ট ক্লেইম করুন!
+                    </div>`;
+                return;
+            }
+
+            let html = "";
+            snap.forEach(doc => {
+                const item = doc.data();
+                const docId = doc.id;
+                
+                // সিকিউর মাস্কিং (Phone/Address)
+                let maskedTarget = "User";
+                if(item.number) {
+                    const raw = String(item.number);
+                    if(raw.length > 7) {
+                        maskedTarget = raw.substring(0, 3) + "****" + raw.substring(raw.length - 3);
+                    } else {
+                        maskedTarget = raw.substring(0, 2) + "***" + raw.substring(raw.length - 2);
+                    }
+                } else if(item.userId) {
+                    const uidStr = String(item.userId);
+                    maskedTarget = "ID: " + uidStr.substring(0, 3) + "***" + uidStr.substring(uidStr.length - 2);
+                }
+
+                // ট্রানজাকশন রেফারেন্স আইডি
+                const trxId = item.trxId || item.transactionId || ('TRX' + docId.substring(0, 9).toUpperCase());
+
+                // তারিখ ও সময়
+                let dateFormatted = "সম্প্রতি";
+                if(item.timestamp) {
+                    const d = item.timestamp.toDate ? item.timestamp.toDate() : new Date(item.timestamp.seconds * 1000);
+                    dateFormatted = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ", " + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                }
+
+                html += `
+                <div class="payout-item">
+                    <div>
+                        <div style="font-weight: 800; font-size: 12px; color: #fff;">
+                            <i class="fa-regular fa-user"></i> ${maskedTarget} 
+                            <span style="font-size: 10px; color: #10b981; margin-left: 5px;">(${item.method || 'Bkash'})</span>
+                        </div>
+                        <div class="trx-id"><i class="fa-solid fa-receipt"></i> ${trxId}</div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="font-weight: 900; font-size: 13.5px; color: #10b981;">৳${parseFloat(item.amount || 0).toFixed(2)}</div>
+                        <div style="font-size: 9.5px; opacity: 0.5;">${dateFormatted}</div>
+                    </div>
+                </div>`;
+            });
+
+            container.innerHTML = html;
+        }, error => {
+            console.error("Payout load error:", error);
+            container.innerHTML = `
+                <div style="text-align:center; padding: 15px; font-size: 11px; opacity: 0.6;">
+                    সকল পেমেন্ট প্রুফ ও স্ক্রিনশট দেখতে আমাদের টেলিগ্রাম চ্যানেলে জয়েন করুন।
+                </div>`;
+        });
+    }
+
     function openHistory(titleText, type) {
         const list = type === 'Pending' ? pendingWithdrawals : completeWithdrawals;
         let html = "";
-        list.forEach(item => { html += `<div style="background:rgba(255,255,255,0.03); padding:15px; border-radius:18px; margin-bottom:12px; display:flex; justify-content:space-between; border:1px solid var(--border);">
-                <span><b>${item.method}</b><br><small style="opacity:0.6;">${item.number}</small></span>
-                <span style="text-align:right;"><b style="color:var(--primary);">৳${item.amount}</b><br><small style="color:${type==='Pending'?'#f59e0b':'#10b981'}; font-size:9px;">${type}</small></span>
-            </div>`; });
+        list.forEach(item => { 
+            const trxId = item.trxId || item.transactionId || 'PENDING-VERIFY';
+            html += `<div style="background:rgba(255,255,255,0.03); padding:15px; border-radius:18px; margin-bottom:12px; display:flex; justify-content:space-between; border:1px solid var(--border);">
+                <span>
+                    <b>${item.method}</b><br>
+                    <small style="opacity:0.6;">${item.number}</small><br>
+                    <small style="font-family:monospace; color:var(--primary); font-size:9px;">Trx: ${trxId}</small>
+                </span>
+                <span style="text-align:right;">
+                    <b style="color:var(--primary);">৳${item.amount}</b><br>
+                    <small style="color:${type==='Pending'?'#f59e0b':'#10b981'}; font-size:9px;">${type}</small>
+                </span>
+            </div>`; 
+        });
         document.getElementById('h-list-container').innerHTML = html || "<p style='text-align:center; opacity:0.3;'>No records found.</p>";
         document.getElementById('h-title').innerText = titleText;
         document.getElementById('history-popup').style.display = "flex";
@@ -979,13 +1124,22 @@
         if (amt > userData.balance) return tg.showAlert("আপনার ব্যালেন্স পর্যাপ্ত নয়!"); 
         if (!num) return tg.showAlert("অনুগ্রহ করে নাম্বার বা ওয়ালেট এড্রেস দিন!");
 
+        const generatedTrxId = "TX" + Date.now().toString(36).toUpperCase() + Math.random().toString(36).substring(2, 5).toUpperCase();
+
         db.collection("withdrawals").add({ 
-            userId: String(currentUser.id), amount: amt, number: num, method: selectedMethod, status: "Pending", timestamp: firebase.firestore.FieldValue.serverTimestamp() 
+            userId: String(currentUser.id), 
+            userName: currentUser.first_name || "User",
+            amount: amt, 
+            number: num, 
+            method: selectedMethod, 
+            status: "Pending", 
+            trxId: generatedTrxId,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp() 
         }); 
 
         db.collection("users").doc(currentUser.id.toString()).update({ balance: firebase.firestore.FieldValue.increment(-amt) }); 
 
-        tg.showAlert("উত্তোলন রিকোয়েস্ট সফল হয়েছে!"); 
+        tg.showAlert("উত্তোলন রিকোয়েস্ট সফল হয়েছে! অ্যাডমিন যাচাই করার পর আপনার একাউন্টে টাকা পাঠানো হবে।"); 
         document.getElementById('w-amount').value = ""; document.getElementById('w-number').value = "";
         document.getElementById('w-number').setAttribute('disabled', 'true');
         document.getElementById('w-number').placeholder = "প্রথমে পেমেন্ট মেথড সিলেক্ট করুন";
